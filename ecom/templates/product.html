@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    Products
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+<br>
+{% if prd.is_sale %}
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-10 col-xl-12">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img src="{{ prd.image.url}}"
+                    class="w-100" />
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{prd.name}}</h5>
+                <div class="d-flex flex-row">
+                </div>
+                <p class="text-truncate mb-4 mb-md-0">
+                 {{prd.description}}
+                </p>
+                 {% if prd.stock <= 0 %}
+            <p class="text-truncate mb-4 mb-md-0" style="color:red;"><b>Out of Stock</b></p>
+            {% endif %}
+              </div>
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+              <div style="float:right">
+            <img src="/static/images/offer.png" alt="" height=50px width=50px/>
+            </div>
+            <br>
+            <br>
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">Rs{{prd.sale_price}}</h4>
+                  <span class="text-danger"><s>{{prd.price}}</s></span>
+                </div>
+                <h6 class="text-success">Free shipping</h6>
+                <div class="d-flex flex-column mt-4">
+                {% if prd.stock <= 0 %}
+            <h6 class="btn btn-danger" href="">Out Of Stock</h6>
+            {% else %}
+            {% if request.user.is_authenticated %}
+              {% if x.stock <= 0 %}
+            <p class="text-truncate mb-4 mb-md-0" style="color:red;"><b>Out of Stock</b></p>
+              {% endif %}
+                 <a class="btn btn-secondary" href="{% url 'cart:add_cart' prd.id %}">Add to Cart</a>
+            {% else %}
+            <a class="btn btn-warning" href="{% url 'login_cus' %}">Login</a>
+            {% endif %}
+            {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+{% else %}
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-10 col-xl-12">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img src="{{ prd.image.url}}"
+                    class="w-100" />
+                  
+                    <div class="hover-overlay">
+                      <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{prd.name}}</h5>
+                <div class="d-flex flex-row">
+                </div>
+                <p class="text-truncate mb-4 mb-md-0">
+                 {{prd.description}}
+                </p>
+                 {% if prd.stock <= 0 %}
+            <p class="text-truncate mb-4 mb-md-0" style="color:red;"><b>Out of Stock</b></p>
+            {% endif %}
+              </div>
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">Rs{{prd.price}}</h4>
+                  {% comment %} <span class="text-danger"><s>Rs{{prd.price}}</s></span> {% endcomment %}
+                </div>
+                <h6>Shipping fee Rs 20</h6>
+                <div class="d-flex flex-column mt-4">
+
+  
+   {% if prd.stock <= 0 %}
+            <h6 class="btn btn-danger" href="">Out Of Stock</h6>
+            {% else %}
+            {% if request.user.is_authenticated %}
+                 <a class="btn btn-secondary" href="{% url 'cart:add_cart' prd.id %}">Add to Cart</a>
+                 {% else %}
+            <a class="btn btn-warning" href="{% url 'login_cus' %}">Login</a>
+            {% endif %}
+            {% endif %}
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+{% endif %}
+
+
+{% endblock content %}

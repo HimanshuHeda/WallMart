@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    EcoMart
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+<section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          {{cat.name}}
+        </h2>
+      </div>
+      <div class="row">
+      {% for x in prd %}
+      {% if x.is_sale %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="{% url 'productpage' x.id %}">
+             <div style="float:right">
+            <img src="/static/images/offer.png" alt="" height=50px width=50px/>
+            </div>
+            <h6>
+                  {{x.name}}
+                </h6>
+              <div class="img-box">
+                <img src="{{ x.image.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                 <s> Rs.{{x.price}}</s>
+                 Rs.{{x.sale_price}}
+                  <br>
+                  {% comment %} <span>
+                    {{x.description}}
+                  </span> {% endcomment %}
+                </h6>
+              </div> 
+              {% comment %} <div class="new">
+                <span>
+                  
+                </span>
+              </div>  {% endcomment %}
+            </a>
+          </div>
+          
+        </div>
+        {% else %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="{% url 'productpage' x.id %}">
+            <h6>
+                  {{x.name}}
+                </h6>
+              <div class="img-box">
+                <img src="{{ x.image.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                 {% comment %} <s> Rs.{{x.price}}</s> {% endcomment %}
+                 Rs.Rs.{{x.price}}
+                  <br>
+                  {% comment %} <span>
+                    {{x.description}}
+                  </span> {% endcomment %}
+                </h6>
+              </div> 
+              {% comment %} <div class="new">
+                <span>
+                  
+                </span>
+              </div>  {% endcomment %}
+            </a>
+          </div>
+          
+        </div>
+        {% endif %}
+        {% endfor %}
+        
+        </div>
+        </section>
+{% endblock content %}

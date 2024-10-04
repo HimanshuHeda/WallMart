@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    EcoMart
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+
+<!-- order_form.html -->
+<center>
+<section class="contact_section ">
+    <div class="container px-0">
+      <div class="heading_container ">
+        <h2 class="">
+          Order
+        </h2>
+      </div>
+    </div>
+        <div class="col-md-6 col-lg-5 px-0">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+ <p class="mb-4">Your payment details</p>
+
+               <label class="form-label" for="formControlLgXM8">Card Number</label>
+                <input type="text" id="formControlLgXM8" class="form-control"/>
+                <label class="form-label" for="formControlLgcvv8">Cvv</label>
+   <input type="password" id="formControlLgcvv8" class="form-control" />
+     <label class="form-label" for="formControlLgExpk8">Expire</label>
+   <input type="password" id="formControlLgExpk8" class="form-control"/>
+                  
+  
+    <button type="submit" class="btn btn-warning" >Order Now</button>
+</form>
+</div>
+      </div>
+    </div>
+  </section>
+  </center>
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    Register
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+<center>
+<section class="contact_section ">
+    <div class="container px-0">
+      <div class="heading_container ">
+        <h2 class="">
+          Log-in 
+        </h2>
+      </div>
+    </div>
+        <div class="col-md-6 col-lg-5 px-0">
+          <form method='POST'>
+          {% csrf_token %}
+          Username
+            <input type="text" name="username">
+            Password
+            <input type="password" name="password">
+
+
+            <button type='submit'>Log-in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </center>
+  {% endblock content %}
